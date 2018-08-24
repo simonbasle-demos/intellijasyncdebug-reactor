@@ -24,8 +24,8 @@ public class ComplexDebuggingExample {
             }
             StringWriter sw = new StringWriter();
 
-            source.subscribe(System.out::println,
-                    t -> t.printStackTrace(new PrintWriter(sw))
+            source.map(i -> "value " + i)
+                  .subscribe(System.out::println, t -> t.printStackTrace(new PrintWriter(sw))
             );
 
             String debugStack = sw.toString();
